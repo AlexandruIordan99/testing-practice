@@ -1,7 +1,5 @@
 const capitalizeFirstIndex = require("./capitalize.js");
 
-// const caesarCipher = require ("./caesar-cipher.js");
-// const analyzeArray = require("analyze-array.js");
 
 it("Capitalizes string", () => {
   expect(capitalizeFirstIndex("john is here."))
