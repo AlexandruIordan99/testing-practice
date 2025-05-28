@@ -26,6 +26,4 @@ function caesarCipher(stringToEncrypt, factor){
   return encryptedArray.join("");
 }
 
-console.log(caesarCipher("Where are my apples?", 7))
-
 module.exports=caesarCipher;
