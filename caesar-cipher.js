@@ -1,45 +1,31 @@
 function caesarCipher(stringToEncrypt, factor){
-  //get character from string
-  //match it to position in alphabet
-  //iteration: get character at position of the current char + factor
-  //add that to the encryptedString variable
-  //return encrypted string
   let alphabetArrayUppercase =[];
   let alphabetArrayLowercase =[];
-  let i;
+
   for(let i=65; i <=90; i++){
     alphabetArrayUppercase.push(String.fromCharCode(i));
   }
   for (i = 97; i <=122; i++){
     alphabetArrayLowercase.push(String.fromCharCode(i));
   }
-  let stringToEncryptArray = stringToEncrypt.split("");
 
-  for(let j = 0; j < stringToEncryptArray.length; j++){
-    if(stringToEncryptArray[j] in alphabetArrayLowercase){
-      if(j+factor > alphabetArrayLowercase.length){
-        stringToEncryptArray[j] = alphabetArrayLowercase[factor - (alphabetArrayLowercase.length-1-j)];
-      } else {
-        stringToEncryptArray[j] = alphabetArrayLowercase[j + factor];
-      }
+  let encryptedArray = [];
+
+  for (let char of stringToEncrypt){
+    if (alphabetArrayUppercase.includes(char)){
+      let index = alphabetArrayUppercase.indexOf(char);
+      encryptedArray.push(alphabetArrayUppercase[(index + factor) % 26]);
     }
-    else if (stringToEncryptArray[j] in alphabetArrayLowercase){
-      if(j+factor > alphabetArrayLowercase.length){
-        stringToEncryptArray[j] = alphabetArrayLowercase[factor - (alphabetArrayLowercase.length-1-j)];
-      } else{
-        stringToEncryptArray[j] = alphabetArrayUppercase[j + factor];
-      }
+    else if (alphabetArrayLowercase.includes(char)){
+      let index = alphabetArrayLowercase.indexOf(char);
+      encryptedArray.push(alphabetArrayLowercase[(index + factor) % 26]);
+    } else{
+      encryptedArray.push(char);
     }
   }
-
-
-  for (let i = 0; i < stringToEncryptArray.length; i++){
-
-  }
-
-  return "ended"
+  return encryptedArray.join("");
 }
 
-console.log(caesarCipher("A", 1));
+console.log(caesarCipher("Where are my apples?", 7))
 
 module.exports=caesarCipher;
